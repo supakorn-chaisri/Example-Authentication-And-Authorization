@@ -7,8 +7,13 @@ import (
 	"net/http"
 
 	"MyAuthSystem.OrderApi/middleware"
-	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/jackc/pgx/v5"
 )
+
+// 💡 1. สร้าง พิมพ์เขียวกลาง (Interface) เฉพาะเท่าที่เราจำเป็นต้องใช้จริง ๆ
+type OrderDatabase interface {
+	Query(ctx context.Context, sql string, args ...interface{}) (pgx.Rows, error)
+}
 
 type OrderResponse struct {
 	OrderID     string  `json:"orderId"`
@@ -16,7 +21,7 @@ type OrderResponse struct {
 	Price       float64 `json:"price"`
 }
 
-func GetMyOrdersHandler(w http.ResponseWriter, r *http.Request, dbpool *pgxpool.Pool) {
+func GetMyOrdersHandler(w http.ResponseWriter, r *http.Request, dbpool OrderDatabase) {
 	w.Header().Set("Content-Type", "application/json")
 
 	// ดึง User ID มาจากตั๋ว JWT ของฝั่ง .NET Identity Server

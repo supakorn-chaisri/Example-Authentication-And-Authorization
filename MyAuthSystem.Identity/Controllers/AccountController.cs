@@ -11,13 +11,13 @@ public class AccountController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly TokenService _tokenService;
+    private readonly ITokenService _tokenService;
 
     // Inject บริการจัดการผู้ใช้ของระบบ Identity เข้ามาใช้งาน
     public AccountController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
-        TokenService tokenService)
+        ITokenService tokenService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
