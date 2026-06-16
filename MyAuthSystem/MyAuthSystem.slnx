@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MyAuthSystem.Application/MyAuthSystem.Application.csproj" />
+  <Project Path="MyAuthSystem.Domain/MyAuthSystem.Domain.csproj" />
+  <Project Path="MyAuthSystem.Infrastructure/MyAuthSystem.Infrastructure.csproj" />
+  <Project Path="MyAuthSystem.WebApi/MyAuthSystem.WebApi.csproj" />
+</Solution>
